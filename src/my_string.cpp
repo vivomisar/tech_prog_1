@@ -5,21 +5,25 @@
 MyString::MyString(int size)
 {
 	setSize(size);
+	std::cout << "Конструктор: MyString (без параметров)";
 }
 
 MyString::MyString(const char *c_str)
 {
 	copy(c_str);
+	std::cout << "Конструктор: MyString (Си строка)";
 }
 
 MyString::MyString(const MyString &other)
 {
 	size = other.size;
+	text_size = other.text_size;
 	data = new char[size];
 	for (int i = 0; i < size; ++i)
 	{
 		data[i] = other.data[i];
 	}
+	std::cout << "Конструктор: MyString (копирования)";
 }
 
 void MyString::setSize(int size)
@@ -65,6 +69,33 @@ std::istream &operator>>(std::istream &is, MyString &str)
 	return is;
 }
 
+void MyString::append(const char *str)
+{
+	for (int i = text_size + 1; i < size; ++i, ++str)
+	{
+		data[i] = *str;
+	}
+}
+
+MyString MyString::operator+(const char *str)
+{
+	MyString ret = *this;
+	int str_size = 0;
+	while (*str != 0)
+		str_size++;
+	ret.setSize(this->getSize() + str_size + 1);
+	ret.append(str - str_size);
+	return ret;
+}
+
+MyString MyString::operator+(MyString &other)
+{
+	MyString ret = *this;
+	ret.setSize(this->getSize() + other.getSize());
+	ret.append(other.data);
+	return ret;
+}
+
 void MyString::copy(const char *str)
 {
 	const char *p = str;
@@ -72,6 +103,7 @@ void MyString::copy(const char *str)
 	while (*p != 0)
 		++i_size;
 	setSize(i_size + 1);
+	text_size = i_size;
 	for (int i = 0; i < size; ++i, ++str)
 	{
 		data[i] = *str;
