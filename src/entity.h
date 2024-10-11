@@ -13,6 +13,8 @@ class Entity
 	virtual MyString getAttrocity() = 0;
 	virtual MyString getLocation() = 0;
 	virtual MyString getSkills() = 0;
+	virtual MyString getDesc() = 0;
+	virtual void setDesc(MyString) = 0;
 	virtual void setName(MyString) = 0;
 	virtual void setWeapon(MyString) = 0;
 	virtual void setAttrocity(MyString) = 0;

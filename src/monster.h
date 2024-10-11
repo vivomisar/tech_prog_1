@@ -12,16 +12,21 @@ class Monster : public Entity
 	Monster();
 	Monster(MyString name, MyString desc);
 	Monster(Monster &other);
+
+	friend std::ostream operator<<(std::ostream &os, const Monster &monster);
 	void showInfo() override;
 	MyString getName() override;
 	MyString getWeapon() override;
 	MyString getAttrocity() override;
 	MyString getLocation() override;
 	MyString getSkills() override;
+	MyString getDesc() override;
+	void setDesc(MyString) override;
 	void setName(MyString) override;
 	void setWeapon(MyString) override;
 	void setAttrocity(MyString) override;
 	void setLocation(MyString) override;
 	void setSkills(MyString) override;
+	~Monster();
 };
 #endif

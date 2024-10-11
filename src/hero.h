@@ -14,16 +14,48 @@ class Hero : public Entity
 	Hero(MyString name, MyString weapon, MyString skills);
 	Hero(Hero &other);
 
+	friend std::ostream operator<<(std::ostream &os, const Hero &hero);
+
 	void showInfo() override;
-	MyString getName() override;
-	MyString getWeapon() override;
-	MyString getAttrocity() override;
-	MyString getLocation() override;
-	MyString getSkills() override;
-	void setName(MyString) override;
-	void setWeapon(MyString) override;
-	void setAttrocity(MyString) override;
-	void setLocation(MyString) override;
-	void setSkills(MyString) override;
+	MyString getName() override
+	{
+		return name;
+	};
+	MyString getWeapon() override
+	{
+		return weapon;
+	};
+	MyString getAttrocity() override
+	{
+		throw "У героя нет злодеяний";
+	};
+	MyString getLocation() override
+	{
+		throw "У героя нет локации";
+	};
+	MyString getSkills() override
+	{
+		return skills;
+	};
+	MyString getDesc() override
+	{
+		throw "У героя нет описания";
+	};
+	void setDesc(MyString) override{};
+	void setName(MyString name) override
+	{
+		this->name = name;
+	};
+	void setWeapon(MyString weapon) override
+	{
+		this->weapon = weapon;
+	};
+	void setAttrocity(MyString) override{};
+	void setLocation(MyString) override{};
+	void setSkills(MyString skills) override
+	{
+		this->skills = skills;
+	};
+	~Hero();
 };
 #endif

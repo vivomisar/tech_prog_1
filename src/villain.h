@@ -15,6 +15,8 @@ class Villain : public Entity
   public:
 	Villain();
 	Villain(MyString name, MyString weapon, MyString atrocity, MyString location, MyString skills);
+
+	friend std::ostream operator<<(std::ostream &os, const Villain &villain);
 	Villain(Villain &other);
 	void showInfo() override;
 	MyString getName() override;
@@ -22,10 +24,13 @@ class Villain : public Entity
 	MyString getAttrocity() override;
 	MyString getLocation() override;
 	MyString getSkills() override;
+	MyString getDesc() override;
+	void setDesc(MyString) override;
 	void setName(MyString) override;
 	void setWeapon(MyString) override;
 	void setAttrocity(MyString) override;
 	void setLocation(MyString) override;
 	void setSkills(MyString) override;
+	~Villain();
 };
 #endif
