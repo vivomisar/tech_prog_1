@@ -13,6 +13,12 @@ Hero::Hero(Hero &other) : name(other.getName()), weapon(other.getWeapon()), skil
 {
 	std::cout << "Конструктор: Hero (копирования)\n";
 }
+
+void Hero::showInfo()
+{
+	std::cout << "Наименование: " << name << "\nОружие: " << weapon << "\nУмения: " << skills << "\n";
+}
+
 Hero::~Hero()
 {
 	std::cout << "Деструктор: Hero\n";

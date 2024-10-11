@@ -15,18 +15,42 @@ class Monster : public Entity
 
 	friend std::ostream operator<<(std::ostream &os, const Monster &monster);
 	void showInfo() override;
-	MyString getName() override;
-	MyString getWeapon() override;
-	MyString getAttrocity() override;
-	MyString getLocation() override;
-	MyString getSkills() override;
-	MyString getDesc() override;
-	void setDesc(MyString) override;
-	void setName(MyString) override;
-	void setWeapon(MyString) override;
-	void setAttrocity(MyString) override;
-	void setLocation(MyString) override;
-	void setSkills(MyString) override;
+	MyString getName() override
+	{
+		return name;
+	};
+	MyString getWeapon() override
+	{
+		throw "У монстра нет оружия";
+	};
+	MyString getAttrocity() override
+	{
+		throw "У монстра нет злодеяний";
+	};
+	MyString getLocation() override
+	{
+		throw "У монстра нет локации";
+	};
+	MyString getSkills() override
+	{
+		throw "У монстра нет умений";
+	};
+	MyString getDesc() override
+	{
+		return desc;
+	};
+	void setDesc(MyString desc) override
+	{
+		this->desc = desc;
+	};
+	void setName(MyString name) override
+	{
+		this->name = name;
+	};
+	void setWeapon(MyString) override{};
+	void setAttrocity(MyString) override{};
+	void setLocation(MyString) override{};
+	void setSkills(MyString) override{};
 	~Monster();
 };
 #endif

@@ -12,3 +12,13 @@ Monster::Monster(Monster &other) : name(other.getName()), desc(other.getDesc())
 {
 	std::cout << "Конструктор: Monster (копирования)\n";
 }
+
+void Monster::showInfo()
+{
+	std::cout << "Наименование: " << name << "\nОписание: " << desc << "\n";
+}
+
+Monster::~Monster()
+{
+	std::cout << "Декструктор: Monster\n";
+}

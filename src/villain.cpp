@@ -12,3 +12,14 @@ Villain::Villain(Villain &other)
 {
 	std::cout << "Конструктор: Villain (копирования)\n";
 }
+
+void Villain::showInfo()
+{
+	std::cout << "Наименование: " << name << "\nОружие: " << weapon << "\nУмения: " << skills
+	          << "\nЗлодеяние: " << atrocity << "\nЛокация: " << location << "\n";
+}
+
+Villain::~Villain()
+{
+	std::cout << "Декструктор: Villain\n";
+}

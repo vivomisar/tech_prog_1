@@ -19,18 +19,51 @@ class Villain : public Entity
 	friend std::ostream operator<<(std::ostream &os, const Villain &villain);
 	Villain(Villain &other);
 	void showInfo() override;
-	MyString getName() override;
-	MyString getWeapon() override;
-	MyString getAttrocity() override;
-	MyString getLocation() override;
-	MyString getSkills() override;
-	MyString getDesc() override;
-	void setDesc(MyString) override;
-	void setName(MyString) override;
-	void setWeapon(MyString) override;
-	void setAttrocity(MyString) override;
-	void setLocation(MyString) override;
-	void setSkills(MyString) override;
+	MyString getName() override
+	{
+		return name;
+	};
+	MyString getWeapon() override
+	{
+		return weapon;
+	};
+	MyString getAttrocity() override
+	{
+		return atrocity;
+	};
+	MyString getLocation() override
+	{
+		return location;
+	};
+	MyString getSkills() override
+	{
+		return skills;
+	};
+	MyString getDesc() override
+	{
+		throw "У злодея нет описания";
+	};
+	void setDesc(MyString) override{};
+	void setName(MyString name) override
+	{
+		this->name = name;
+	};
+	void setWeapon(MyString weapon) override
+	{
+		this->weapon = weapon;
+	};
+	void setAttrocity(MyString atrocity) override
+	{
+		this->atrocity = atrocity;
+	};
+	void setLocation(MyString location) override
+	{
+		this->location = location;
+	};
+	void setSkills(MyString skills) override
+	{
+		this->skills = skills;
+	};
 	~Villain();
 };
 #endif
