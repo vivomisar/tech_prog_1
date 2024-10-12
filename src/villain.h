@@ -1,69 +1,27 @@
 #ifndef VILLAIN_H
 #define VILLAIN_H
-#include "entity.h"
-#include "my_string.h"
+#include "heroes.h"
 
-class Villain : public Entity
+class Villain : public Heroes
 {
   private:
-	MyString name;
-	MyString weapon;
-	MyString atrocity;
-	MyString location;
-	MyString skills;
+	std::string name;
+	std::string weapon;
+	std::string atrocity;
+	std::string location;
+	std::string skills;
 
   public:
 	Villain();
-	Villain(MyString name, MyString weapon, MyString atrocity, MyString location, MyString skills);
+	Villain(std::string name, std::string weapon, std::string atrocity, std::string location, std::string skills);
+	Villain(Villain &other);
 
 	friend std::ostream operator<<(std::ostream &os, const Villain &villain);
-	Villain(Villain &other);
+
 	void showInfo() override;
-	MyString getName() override
-	{
-		return name;
-	};
-	MyString getWeapon() override
-	{
-		return weapon;
-	};
-	MyString getAttrocity() override
-	{
-		return atrocity;
-	};
-	MyString getLocation() override
-	{
-		return location;
-	};
-	MyString getSkills() override
-	{
-		return skills;
-	};
-	MyString getDesc() override
-	{
-		throw "У злодея нет описания";
-	};
-	void setDesc(MyString) override{};
-	void setName(MyString name) override
-	{
-		this->name = name;
-	};
-	void setWeapon(MyString weapon) override
-	{
-		this->weapon = weapon;
-	};
-	void setAttrocity(MyString atrocity) override
-	{
-		this->atrocity = atrocity;
-	};
-	void setLocation(MyString location) override
-	{
-		this->location = location;
-	};
-	void setSkills(MyString skills) override
-	{
-		this->skills = skills;
-	};
+	std::string type() override;
+	void save(std::ostream &) override;
+	void load(std::istream &) override;
 	~Villain();
 };
 #endif
