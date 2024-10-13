@@ -7,13 +7,21 @@
 class Keeper
 {
   private:
-	Heroes *data;
+	Heroes **data;
+	int size;
+	int capacity;
+	void setSize(int size);
+	void normalize(int index);
 
   public:
 	Keeper();
 	Keeper(const std::string &path);
 	Keeper(Keeper &other);
-	void recover(const std::string &path);
-	void save(const std::string &path);
+	Heroes &operator[](int index);
+	void add(Heroes *entity);
+	void remove(int index);
+	void recover(std::istream &is);
+	void save(std::ostream &os);
+	~Keeper();
 };
 #endif
