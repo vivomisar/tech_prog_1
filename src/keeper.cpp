@@ -4,7 +4,7 @@
 #include "monster.h"
 #include "villain.h"
 
-Keeper::Keeper()
+Keeper::Keeper() : size(0), capacity(0), data(nullptr)
 {
 	std::cout << "Конструктор: Keeper (без параметров)\n";
 }
@@ -39,17 +39,25 @@ void Keeper::setSize(int size)
 		{
 			tmp[i] = data[i];
 		}
+		if (size == 0)
+		{
+			for (int i = 0; i < this->size; ++i)
+			{
+				delete data[i];
+			}
+		}
+
 		delete[] data;
 		data = nullptr;
 	}
 	if (size == 0)
 		return;
-	this->size = size;
 	data = new Heroes *[size];
-	for (int i = 0; i < size; ++i)
+	for (int i = 0; i < this->size; ++i)
 	{
 		data[i] = tmp[i];
 	}
+	this->size = this->capacity = size;
 }
 
 void Keeper::add(Heroes *entity)
@@ -84,15 +92,15 @@ void Keeper::recover(std::istream &is)
 	{
 		std::string type;
 		is >> type;
-		if (type == "Hero")
+		if (type == "Hero:")
 		{
 			data[i] = new Hero();
 		}
-		else if (type == "Villain")
+		else if (type == "Villain:")
 		{
 			data[i] = new Villain();
 		}
-		else if (type == "Monster")
+		else if (type == "Monster:")
 		{
 			data[i] = new Monster();
 		}
@@ -114,5 +122,6 @@ void Keeper::save(std::ostream &os)
 }
 Keeper::~Keeper()
 {
+	setSize(0);
 	std::cout << "Деструктор: Keeper\n";
 }

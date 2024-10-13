@@ -13,9 +13,49 @@ Monster::Monster(Monster &other) : name(other.name), desc(other.name)
 	std::cout << "Конструктор: Monster (копирования)\n";
 }
 
-void Monster::showInfo()
+void Monster::edit()
 {
-	std::cout << "Наименование: " << name << "\nОписание: " << desc << "\n";
+
+	char choice;
+	std::cout << "1 – Наименовние;\n"
+	          << "2 – Описание;\n"
+	          << "0 – Отмена;\n";
+	std::cin >> choice;
+	std::cin.ignore();
+	switch (choice)
+	{
+	case '1':
+		std::cout << "Введите наименование >> ";
+		getline(std::cin, name);
+		break;
+	case '2':
+		std::cout << "Введите описание >> ";
+		getline(std::cin, desc);
+		break;
+	case '0':
+		break;
+	default:
+		throw "Неверный выбор";
+		break;
+	}
+}
+
+void Monster::setName(std::string name)
+{
+	this->name = name;
+}
+void Monster::setDesc(std::string desc)
+{
+	this->desc = desc;
+}
+
+std::string Monster::getName()
+{
+	return name;
+}
+std::string Monster::getDesc()
+{
+	return desc;
 }
 
 std::string Monster::type()
@@ -35,13 +75,15 @@ void Monster::load(std::istream &is)
 	is >> key;
 	if (key != "Name:")
 		throw "Неверный ключ у объекта Monster";
+	is.ignore(2);
 	getline(is, name);
-	name.erase(0, 3);
+	name.erase(0, 2);
 	is >> key;
 	if (key != "Description:")
 		throw "Неверный ключ у объекта Monster";
+	is.ignore(2);
 	getline(is, desc);
-	desc.erase(0, 3);
+	desc.erase(0, 2);
 }
 
 Monster::~Monster()

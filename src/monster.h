@@ -12,11 +12,16 @@ class Monster : public Heroes
 	Monster(std::string name, std::string desc);
 	Monster(Monster &other);
 
-	friend std::ostream operator<<(std::ostream &os, const Monster &monster);
-	void showInfo() override;
+	void edit() override;
 	std::string type() override;
 	void save(std::ostream &) override;
 	void load(std::istream &) override;
+
+	void setName(std::string);
+	void setDesc(std::string);
+
+	std::string getName();
+	std::string getDesc();
 
 	~Monster();
 };

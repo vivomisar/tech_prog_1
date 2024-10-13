@@ -12,7 +12,9 @@ class Heroes
 		std::cout << "Конструктор: Heroes\n";
 	};
 
-	virtual void showInfo() = 0;
+	friend std::ostream &operator<<(std::ostream &os, Heroes &heroes);
+
+	virtual void edit() = 0;
 	virtual std::string type() = 0;
 	virtual void save(std::ostream &) = 0;
 	virtual void load(std::istream &) = 0;

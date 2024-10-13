@@ -15,10 +15,18 @@ class Hero : public Heroes
 
 	friend std::ostream operator<<(std::ostream &os, const Hero &hero);
 
-	void showInfo() override;
+	void edit() override;
 	std::string type() override;
 	void save(std::ostream &) override;
 	void load(std::istream &) override;
+
+	void setName(std::string);
+	void setWeapon(std::string);
+	void setSkills(std::string);
+
+	std::string getName();
+	std::string getSkills();
+	std::string getWeapon();
 	~Hero();
 };
 #endif

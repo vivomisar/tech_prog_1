@@ -8,4 +8,4 @@ all:
 	$(CC) -o $(BUILD_DIR)/$(NAME) $(SRC)/*.cpp $(CFLAGS)
 
 run: all
-	./$(NAME)
+	./$(BUILD_DIR)/$(NAME)
